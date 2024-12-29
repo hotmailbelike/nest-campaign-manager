@@ -7,8 +7,9 @@ import { PaginationQueryDto } from 'src/common/pagination-query.dto';
 
 class PaginatedCampaignResponse {
   data: Campaign[];
-  nextCursor: string | null;
+  cursor: string | null;
   hasMore: boolean;
+  totalCount: number;
 }
 
 @Injectable()
@@ -23,8 +24,8 @@ export class CampaignsService {
     const { cursor, take } = query;
 
     // Fetch one extra item to determine if there are more items
-    const items = await this.prisma.campaign.findMany({
-      take: take + 1,
+    const campaigns = await this.prisma.campaign.findMany({
+      ...(take && { take: parseInt(take) + 1 }),
       ...(cursor && {
         cursor: {
           id: cursor,
@@ -36,20 +37,24 @@ export class CampaignsService {
       },
     });
 
+    // Count of total items regardless of pagination
+    const campaignCount = await this.prisma.campaign.count();
+
     // Check if we have more items
-    const hasMore = items.length > take;
+    const hasMore = campaigns.length > parseInt(take);
     // Remove the extra item if we fetched it
-    const data = hasMore ? items.slice(0, -1) : items;
+    const data = hasMore ? campaigns.slice(0, -1) : campaigns;
 
     return {
       data,
-      nextCursor: hasMore ? items[items.length - 2].id : null,
+      cursor: hasMore ? campaigns[campaigns.length - 2].id : null,
       hasMore,
+      totalCount: campaignCount,
     };
   }
 
   findOne(id: string) {
-    return this.prisma.campaign.findUnique({ where: { id } });
+    return this.prisma.campaign.findUniqueOrThrow({ where: { id } });
   }
 
   update(id: string, updateCampaignDto: UpdateCampaignDto) {
