@@ -78,4 +78,32 @@ export class CampaignsService {
     });
     return campaigns.map((campaign) => campaign.name);
   }
+
+  async findByFilters(filters: CampaignFilterDto): Promise<Campaign[]> {
+    const { exactName, partialName, status } = filters;
+
+    const where: any = {};
+
+    if (exactName) {
+      where.name = exactName;
+    }
+
+    if (partialName) {
+      where.name = {
+        contains: partialName,
+        mode: 'insensitive', // This enables case-insensitive search
+      };
+    }
+
+    if (status) {
+      where.status = status;
+    }
+
+    return this.prisma.campaign.findMany({
+      where,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
 }

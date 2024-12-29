@@ -50,4 +50,9 @@ export class CampaignsController {
   getDistinctNames() {
     return this.campaignsService.getDistinctNames();
   }
+
+  @Get('search/filters')
+  findByFilters(@Query() filters: CampaignFilterDto) {
+    return this.campaignsService.findByFilters(filters);
+  }
 }
