@@ -4,6 +4,7 @@ import { UpdateCampaignDto } from './dto/update-campaign.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { Campaign } from '@prisma/client';
 import { PaginationQueryDto } from 'src/common/pagination-query.dto';
+import { CampaignFilterDto } from './dto/filter-campaign.dto';
 
 class PaginatedCampaignResponse {
   data: Campaign[];
@@ -66,5 +67,15 @@ export class CampaignsService {
 
   remove(id: string) {
     return this.prisma.campaign.delete({ where: { id } });
+  }
+
+  async getDistinctNames(): Promise<string[]> {
+    const campaigns = await this.prisma.campaign.findMany({
+      distinct: ['name'],
+      select: {
+        name: true,
+      },
+    });
+    return campaigns.map((campaign) => campaign.name);
   }
 }

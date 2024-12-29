@@ -12,6 +12,7 @@ import { CampaignsService } from './campaigns.service';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
 import { PaginationQueryDto } from 'src/common/pagination-query.dto';
+import { CampaignFilterDto } from './dto/filter-campaign.dto';
 
 @Controller('campaigns')
 export class CampaignsController {
@@ -43,5 +44,10 @@ export class CampaignsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.campaignsService.remove(id);
+  }
+
+  @Get('names/distinct')
+  getDistinctNames() {
+    return this.campaignsService.getDistinctNames();
   }
 }
