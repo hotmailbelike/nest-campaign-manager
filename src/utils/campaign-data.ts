@@ -6,7 +6,7 @@ export const campaignData = [
     totalLeads: 50,
     invites: 1500,
     connections: 200,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-01-05T10:00:00.000Z',
   },
   {
@@ -16,7 +16,7 @@ export const campaignData = [
     totalLeads: 30,
     invites: 1200,
     connections: 180,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-01-10T11:30:00.000Z',
   },
   {
@@ -26,7 +26,7 @@ export const campaignData = [
     totalLeads: 40,
     invites: 1300,
     connections: 220,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-01-15T12:15:00.000Z',
   },
   {
@@ -36,7 +36,7 @@ export const campaignData = [
     totalLeads: 60,
     invites: 1600,
     connections: 250,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-02-01T14:30:00.000Z',
   },
   {
@@ -46,7 +46,7 @@ export const campaignData = [
     totalLeads: 35,
     invites: 1100,
     connections: 170,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-02-10T09:45:00.000Z',
   },
   {
@@ -56,7 +56,7 @@ export const campaignData = [
     totalLeads: 50,
     invites: 1500,
     connections: 200,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-02-20T16:00:00.000Z',
   },
   {
@@ -66,7 +66,7 @@ export const campaignData = [
     totalLeads: 45,
     invites: 1400,
     connections: 230,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-03-03T13:30:00.000Z',
   },
   {
@@ -86,7 +86,7 @@ export const campaignData = [
     totalLeads: 60,
     invites: 1600,
     connections: 250,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-03-12T10:15:00.000Z',
   },
   {
@@ -96,7 +96,7 @@ export const campaignData = [
     totalLeads: 40,
     invites: 1300,
     connections: 220,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-04-01T14:00:00.000Z',
   },
   {
@@ -106,7 +106,7 @@ export const campaignData = [
     totalLeads: 35,
     invites: 1100,
     connections: 170,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-04-07T15:30:00.000Z',
   },
   {
@@ -116,7 +116,7 @@ export const campaignData = [
     totalLeads: 50,
     invites: 1500,
     connections: 200,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-04-12T13:00:00.000Z',
   },
   {
@@ -136,7 +136,7 @@ export const campaignData = [
     totalLeads: 30,
     invites: 1200,
     connections: 180,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-05-08T10:15:00.000Z',
   },
   {
@@ -146,7 +146,7 @@ export const campaignData = [
     totalLeads: 60,
     invites: 1600,
     connections: 250,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-05-15T11:45:00.000Z',
   },
   {
@@ -156,7 +156,7 @@ export const campaignData = [
     totalLeads: 50,
     invites: 1500,
     connections: 200,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-06-01T09:00:00.000Z',
   },
   {
@@ -166,7 +166,7 @@ export const campaignData = [
     totalLeads: 40,
     invites: 1300,
     connections: 220,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-06-07T14:30:00.000Z',
   },
   {
@@ -196,7 +196,7 @@ export const campaignData = [
     totalLeads: 30,
     invites: 1200,
     connections: 180,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-07-09T12:00:00.000Z',
   },
   {
@@ -206,7 +206,7 @@ export const campaignData = [
     totalLeads: 60,
     invites: 1600,
     connections: 250,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-07-16T14:30:00.000Z',
   },
   {
@@ -216,7 +216,7 @@ export const campaignData = [
     totalLeads: 40,
     invites: 1300,
     connections: 220,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-08-01T13:15:00.000Z',
   },
   {
@@ -236,7 +236,7 @@ export const campaignData = [
     totalLeads: 35,
     invites: 1100,
     connections: 170,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-08-15T11:00:00.000Z',
   },
   {
@@ -256,7 +256,7 @@ export const campaignData = [
     totalLeads: 30,
     invites: 1200,
     connections: 180,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-09-10T09:30:00.000Z',
   },
   {
@@ -266,7 +266,7 @@ export const campaignData = [
     totalLeads: 60,
     invites: 1600,
     connections: 250,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-09-18T11:00:00.000Z',
   },
   {
@@ -286,7 +286,7 @@ export const campaignData = [
     totalLeads: 45,
     invites: 1400,
     connections: 230,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-10-10T12:30:00.000Z',
   },
   {
@@ -296,7 +296,7 @@ export const campaignData = [
     totalLeads: 35,
     invites: 1100,
     connections: 170,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-10-15T10:00:00.000Z',
   },
   {
@@ -326,7 +326,7 @@ export const campaignData = [
     totalLeads: 30,
     invites: 1200,
     connections: 180,
-    status: 'ACTIVE',
+    status: 'DRAFT',
     createdAt: '2024-11-20T10:45:00.000Z',
   },
 ];
