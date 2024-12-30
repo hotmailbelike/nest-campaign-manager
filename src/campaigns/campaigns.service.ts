@@ -80,12 +80,14 @@ export class CampaignsService {
   }
 
   async findByFilters(filters: CampaignFilterDto): Promise<Campaign[]> {
-    const { exactName, partialName, status } = filters;
+    const { exactNames, partialName, status } = filters;
 
     const where: any = {};
 
-    if (exactName) {
-      where.name = exactName;
+    if (exactNames) {
+      where.name = {
+        in: exactNames.split(',').map((name) => name.trim()),
+      };
     }
 
     if (partialName) {

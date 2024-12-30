@@ -4,7 +4,7 @@ import { IsEnum, IsOptional, IsString } from 'class-validator';
 export class CampaignFilterDto {
   @IsOptional()
   @IsString()
-  exactName?: string;
+  exactNames?: string;
 
   @IsOptional()
   @IsString()
