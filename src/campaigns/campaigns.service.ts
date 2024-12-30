@@ -8,8 +8,10 @@ import { CampaignFilterDto } from './dto/filter-campaign.dto';
 
 class PaginatedCampaignResponse {
   data: Campaign[];
-  cursor: string | null;
-  hasMore: boolean;
+  nextCursor: string | null;
+  previousCursor: string | null;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
   totalCount: number;
 }
 
@@ -22,36 +24,72 @@ export class CampaignsService {
   }
 
   async findAll(query: PaginationQueryDto): Promise<PaginatedCampaignResponse> {
-    const { cursor, take } = query;
+    const { cursor, direction = 'next', limit = 10 } = query;
 
-    // Fetch one extra item to determine if there are more items
-    const campaigns = await this.prisma.campaign.findMany({
-      ...(take && { take: parseInt(take) + 1 }),
+    // Get items + 1 for pagination check
+    const items = await this.prisma.campaign.findMany({
+      take: direction === 'next' ? limit + 1 : -(limit + 1),
       ...(cursor && {
+        skip: 1, // Skip the cursor
         cursor: {
           id: cursor,
         },
-        skip: 1, // Skip the cursor item
       }),
       orderBy: {
         createdAt: 'desc',
       },
     });
 
-    // Count of total items regardless of pagination
-    const campaignCount = await this.prisma.campaign.count();
+    const count = await this.prisma.campaign.count();
 
-    // Check if we have more items
-    const hasMore = campaigns.length > parseInt(take);
-    // Remove the extra item if we fetched it
-    const data = hasMore ? campaigns.slice(0, -1) : campaigns;
+    // Base case: no items found
+    if (items.length === 0) {
+      return {
+        data: [],
+        nextCursor: null,
+        previousCursor: null,
+        hasNextPage: false,
+        hasPreviousPage: false,
+        totalCount: 0,
+      };
+    }
 
-    return {
-      data,
-      cursor: hasMore ? campaigns[campaigns.length - 2].id : null,
-      hasMore,
-      totalCount: campaignCount,
-    };
+    // Prepare items based on direction
+    let finalItems = items;
+    // if (direction === 'previous') {
+    //   finalItems = items.reverse();
+    // }
+
+    // Remove extra item used for pagination check
+    const hasMore = finalItems.length > limit;
+    if (hasMore) {
+      finalItems = finalItems.slice(0, limit);
+    }
+
+    // Determine pagination cursors and flags
+    let result: PaginatedCampaignResponse;
+
+    if (direction === 'next') {
+      result = {
+        data: finalItems,
+        nextCursor: hasMore ? finalItems[finalItems.length - 1].id : null,
+        previousCursor: cursor || null,
+        hasNextPage: hasMore,
+        hasPreviousPage: !!cursor,
+        totalCount: count,
+      };
+    } else {
+      result = {
+        data: finalItems,
+        nextCursor: cursor || null,
+        previousCursor: hasMore ? finalItems[0].id : null,
+        hasNextPage: !!cursor,
+        hasPreviousPage: hasMore,
+        totalCount: count,
+      };
+    }
+
+    return result;
   }
 
   findOne(id: string) {

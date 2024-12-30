@@ -1,4 +1,5 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsOptional, IsEnum, IsInt, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class PaginationQueryDto {
   @IsOptional()
@@ -6,6 +7,11 @@ export class PaginationQueryDto {
   cursor?: string;
 
   @IsOptional()
-  @IsString()
-  take?: string = '10';
+  @IsEnum(['next', 'previous'])
+  direction?: 'next' | 'previous' = 'next';
+
+  @IsOptional()
+  @IsInt()
+  @Transform(({ value }) => parseInt(value))
+  limit?: number = 10;
 }
